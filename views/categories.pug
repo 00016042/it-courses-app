@@ -1,0 +1,22 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Categories
+    link(rel="stylesheet" href="/styless/style.css")
+  body
+    h1 Categories
+    // CRUD operations form
+    form(action="/api/categories", method="POST")
+      label(for="name") Name:
+      input(type="text", name="name")
+      button(type="submit") Add Category
+
+    // Categories list
+    ul
+      each category in categories
+        li= category.name
+        form(action="/api/categories/#{category._id}", method="POST")
+          input(type="hidden" name="_method" value="DELETE")
+          button(type="submit") Delete

@@ -1,0 +1,26 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Customers
+    link(rel="stylesheet" href="/styless/style.css")
+  body
+    h1 Customers
+    // CRUD operations form
+    form(action="/api/customers", method="POST")
+      label(for="name") Name:
+      input(type="text", name="name")
+      label(for="isVip") VIP:
+      input(type="checkbox", name="isVip")
+      label(for="phone") Phone:
+      input(type="text", name="phone")
+      button(type="submit") Add Customer
+
+    // Customers list
+    ul
+      each customer in customers
+        li= customer.name
+        form(action="/api/customers/#{customer._id}", method="POST")
+          input(type="hidden" name="_method" value="DELETE")
+          button(type="submit") Delete

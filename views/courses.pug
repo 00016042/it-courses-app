@@ -1,0 +1,32 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Courses
+    link(rel="stylesheet" href="/styless/style.css")
+  body
+    h1 Courses
+    // CRUD operations form
+    form(action="/api/courses", method="POST")
+      label(for="title") Title:
+      input(type="text", name="title")
+      label(for="categoryId") Category ID:
+      input(type="text", name="categoryId")
+      label(for="trainer") Trainer:
+      input(type="text", name="trainer")
+      label(for="tags") Tags:
+      input(type="text", name="tags")
+      label(for="status") Status:
+      input(type="text", name="status")
+      label(for="fee") Fee:
+      input(type="text", name="fee")
+      button(type="submit") Add Course
+
+    // Courses list
+    ul
+      each course in courses
+        li= course.title
+        form(action="/api/courses/#{course._id}", method="POST")
+          input(type="hidden" name="_method" value="DELETE")
+          button(type="submit") Delete

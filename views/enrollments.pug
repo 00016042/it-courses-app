@@ -1,0 +1,21 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Enrollments
+    link(rel="stylesheet" href="/styless/style.css")
+  body
+    h1 Enrollments
+    // CRUD operations form
+    form(action="/api/enrollments", method="POST")
+      label(for="customerId") Customer ID:
+      input(type="text", name="customerId")
+      label(for="courseId") Course ID:
+      input(type="text", name="courseId")
+      button(type="submit") Enroll Customer
+
+    // Enrollments list
+    ul
+      each enrollment in enrollments
+        li= enrollment.customer.name + ' enrolled to ' + enrollment.course.title
